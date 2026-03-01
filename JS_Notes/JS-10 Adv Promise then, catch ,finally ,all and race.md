@@ -447,11 +447,11 @@ If the `finally` block encounters a rejection or throws an error, the `finally` 
 Promise.resolve("Initial data")
     .finally((data) => {
         console.log(data); // 4 undefined
-        return "Something";
+        return "Something"; // This value is ignored
         // throw new Error("An error in finally");
     })
     .catch((err) => {
-        console.log("Caught:", err.message); // Caught: Something
+        console.log("Caught:", err.message);
     });
 ```
 
