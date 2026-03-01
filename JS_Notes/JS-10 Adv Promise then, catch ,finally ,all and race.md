@@ -519,9 +519,9 @@ In JavaScript, you can extend built-in objects using prototypes to add custom fu
 ### Example
 
 ```javascript
-Promise.prototype.myPromiseALL = function (arrayOfPromises) {
+Promise.myPromiseAll = function (arrayOfPromises) {
     return new Promise(function (resolve, reject) {
-        const unresolved = arrayOfPromises.length;
+        let unresolved = arrayOfPromises.length;
         const resolvedPromiseArr = [];
         
         if (unresolved === 0) {
@@ -529,10 +529,10 @@ Promise.prototype.myPromiseALL = function (arrayOfPromises) {
             return;
         }
 
-        arrayOfPromises.forEach(async (promise) => {
+        arrayOfPromises.forEach(async (promise, index) => {
             try {
                 const value = await promise;
-                resolvedPromiseArr.push(value);
+                resolvedPromiseArr[index] = value;
                 unresolved -- ;
 
                 if (unresolved === 0) {
@@ -553,7 +553,7 @@ const p2 = new Promise((resolve, reject) => {
     }, 100);
 });
 
-Promise.myPromiseALL([p0, p1, p2])
+Promise.myPromiseAll([p0, p1, p2])
     .then((res) => {
         console.log("Resolved:", res);
     })
