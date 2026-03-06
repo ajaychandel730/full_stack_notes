@@ -422,7 +422,7 @@ personMap.forEach((value, key) => {
 
 for (let [key, value] of Object.entries(cap)) {
   console.log("Object Key:", key, "Value:", value);
-} // throws error 
+} // produce output
 
 for (let [key, value] of personMap) {
   console.log("Map Key:", key, "Value:", value);
